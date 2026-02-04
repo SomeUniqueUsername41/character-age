@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Media Year Equations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    select,
+    input[type="text"] {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 5px;
+      font-size: 16px;
+      font-family: Arial;
+    }
+
+    .output {
+      border: 1px solid #ccc;
+      padding: 10px;
+      font-size: 16px;
+      font-family: Arial;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <label for="medium">Select a medium:</label>
+    <select id="medium">
+      <option>-select medium-</option>
+      <option value="Bowser">Bowser</option>
+      <option value="Donkey Kong">Donkey Kong</option>
+      <option value="Earthworm Jim">Earthworm Jim</option>
+      <option value="King Dedede">King Dedede</option>
+      <option value="King K. Rool">King K. Rool</option>
+      <option value="Kirby">Kirby</option>
+      <option value="Psy-Crow">Psy-Crow</option>
+    </select>
+
+    <label for="year">Select a year:</label>
+    <select id="year">
+      <option>-select year-</option>
+      <option value="1622">1622</option>
+      <option value="1744">1744</option>
+      <option value="1766">1766</option>
+      <option value="1782">1782</option>
+      <option value="1802">1802</option>
+      <option value="1804">1804</option>
+      <option value="1822">1822</option>
+      <option value="1860">1860</option>
+      <option value="1861">1861</option>
+      <option value="1902">1902</option>
+      <option value="1921">1921</option>
+      <option value="1922">1922</option>
+      <option value="1966">1966</option>
+      <option value="2039">2039</option>
+      <option value="2056">2056</option>
+      <option value="2058">2058</option>
+      <option value="2059">2059</option>
+      <option value="2060">2060</option>
+      <option value="2076">2076</option>
+      <option value="2078">2078</option>
+      <option value="2079">2079</option>
+      <option value="2080">2080</option>
+      <option value="2114">2114</option>
+      <option value="2139">2139</option>
+      <option value="2140">2140</option>
+      <option value="2154">2154</option>
+      <option value="2158">2158</option>
+      <option value="2159">2159</option>
+      <option value="2173">2173</option>
+      <option value="2174">2174</option>
+      <option value="2176">2176</option>
+      <option value="2180">2180</option>
+      <option value="2196">2196</option>
+      <option value="2218">2218</option>
+      <option value="2233">2233</option>
+      <option value="2234">2234</option>
+      <option value="2253">2253</option>
+      <option value="2254">2254</option>
+      <option value="2256">2256</option>
+      <option value="2258">2258</option>
+      <option value="2259">2259</option>
+      <option value="2279">2279</option>
+      <option value="2313">2313</option>
+      <option value="2339">2339</option>
+      <option value="2354">2354</option>
+      <option value="2373">2373</option>
+      <option value="2413">2413</option>
+    </select>
+
+    <div class="output" id="output"></div>
+  </div>
+
+  <script>
+    const creationYears = {
+      "Donkey Kong": 1981,
+      "Bowser": 1985,
+      "Kirby": 1992,
+      "King Dedede": 1992,
+      "Earthworm Jim": 1994,
+      "Psy-Crow": 1994,
+      "King K. Rool": 1994
+    };
+
+    const characterSelect = document.getElementById("character");
+    const yearSelect = document.getElementById("year");
+    const outputDiv = document.getElementById("output");
+
+    function updateEquation() {
+      const character = characterSelect.value;
+      const selectedYear = parseInt(yearSelect.value);
+
+      if (!creationYears[character]) {
+        outputDiv.textContent = "Select a valid character and year";
+        return;
+      }
+
+      const difference = selectedYear - creationYears[character];
+
+      let equation = "";
+      if (difference > 0) {
+        equation = `${selectedYear} - ${difference} years`;
+      } else if (difference < 0) {
+        equation = `${selectedYear} + ${Math.abs(difference)} years`;
+      } else {
+        equation = `${selectedYear}`;
+      }
+
+      // Use colon instead of hyphen
+      outputDiv.textContent = `${character}: (${equation})`;
+    }
+
+    characterSelect.addEventListener("change", updateEquation);
+    yearSelect.addEventListener("change", updateEquation);
+
+    updateEquation();
+  </script>
+</body>
+</html>
